@@ -84,7 +84,7 @@ Use it as your transducer template for the following.
 ; < [0 1 2]
 ```
 
-[Link to the solution](solution/debug.clj)
+[Link to a solution](solution/debug.clj)
 
 Strange patterns, it reminds me of ...
 
@@ -107,7 +107,7 @@ You heard me well, I want you to implement the following transducer.
 ; => [:may :may :i :i :beg :beg :your :your :pardon :pardon :? :?]
 ```
 
-[Link to the partial solution](solution/beg-step1.clj)
+[Link to a partial solution](solution/beg-step1.clj)
 
 Make sure that you are handling the early termination as well.
 
@@ -163,7 +163,7 @@ Test with the debug transducer (expect problems and losing some hair).
 
 The `beg` transducer should not continue sending data downstream after it receives a reduced result. Fix your implementation if needed.
 
-[Link to the complete solution](solution/beg-step2.clj)
+[Link to a complete solution](solution/beg-step2.clj)
 
 ## All your data are belong to me
 
@@ -183,7 +183,7 @@ It functions similarly to `clojure.core/cat`. Don't handle early termination at 
 (into [] my-cat cat-data)
 ; => [1 2 :fish 3 :heat 4 5 :sleep 6 7]
 ```
-[Link to the solution, part 1](solution/my-cat-step1.clj)
+[Link to a solution, part 1](solution/my-cat-step1.clj)
 
 * Step 2, hungry cat
 
@@ -194,7 +194,7 @@ As you can see, the transducer is keeping for itself all the fishes and the heat
 ; => [1 2 3 4 5 :sleep 6 7]
 ```
 
-[Link to the solution, part 2](solution/my-cat-step2.clj)
+[Link to a solution, part 2](solution/my-cat-step2.clj)
 
 * Step 3, sleepy cat
 
@@ -205,7 +205,7 @@ That version of the transducer falls asleep an the `:sleep` keyword and do not p
 ; => [1 2 3 4 5]
 ```
 
-[Link to the solution, part 3](solution/my-cat-step3.clj)
+[Link to a solution, part 3](solution/my-cat-step3.clj)
 
 * Step 4, correct cat
 
@@ -241,7 +241,7 @@ At last, we want our transducer to respect the normal early termination (with `r
 ; < #reduced[{:status :ready, :val [1 2]} 0x517a7e8e]
 ```
 
-[Link to the complete solution](solution/my-cat-step4.clj)
+[Link to a complete solution](solution/my-cat-step4.clj)
 
 * Provide an idiomatic equivalent to `my-cat`.
 
@@ -264,12 +264,29 @@ The `a-d-d` transducer never loses data.
            (range 10))
 ```
 
+[Link to a partial solution](solution/a-d-d-step1.clj)
+
+* Verify that it works well with early termination.
+
+```clojure
+(slow-into [] (comp (debug 0)
+                    (a-d-d 3)
+                    (debug 2)
+                    (take 5))
+           (range 10))
+; => [0 1 2 3 4]
+```
+
+[Link to a complete solution](solution/a-d-d-step2.clj)
+
 * Change `a-d-d` so that it works similarly to `clojure.core/partition-all`.
 
 ```clojure
 (into [] (a-d-d 3) (range 10))
 ; => [[0 1 2] [3 4 5] [6 7 8] [9]]
 ```
+
+[Link to a partition-all '-ish' solution](solution/a-d-d-step3.clj)
 
 * Verify that it works well with early termination.
 
@@ -293,6 +310,10 @@ Implement `serieduce` which provides a transducer which reduces incoming element
 (into [] (serieduce +) (range 5))
 ; => [0 1 3 6 10]
 ```
+
+[Link to a partial solution](solution/serieduce-step1.clj)
+
+[Link to a complete solution](solution/serieduce-step2.clj)
 
 ## Congratulations if you made it that far!
 
