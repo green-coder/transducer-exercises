@@ -1,10 +1,16 @@
+# Transducer Exercises
+
 Contains exercises on implementing custom transducers in Clojure.
+
+The solutions are linked at the end of each section.
 
 ## Fair notice
 
 Implementing transducers is hard and you may feel confused.
 
-![Cry Kid Meme](img/meme kid cry.gif)
+<p align="center">
+  <img src="img/meme_kid_cry.gif" alt="Cry Kid Meme">
+</p>
 
 That's normal and to be expected, it happens also to me when I read my own code. Just don't give up.
 
@@ -13,9 +19,11 @@ That's normal and to be expected, it happens also to me when I read my own code.
 Implement a transducer that does nothing but passing the data from his input to his output. Functionally speaking, it is an identity transducer.
 
 ```clojure
-(into [] nop (range 3))
+(into [] identity (range 3))
 ; => [0 1 2]
 ```
+
+[Link to the solution](solution/identity.clj)
 
 Use it as your transducer template for the following.
 
@@ -76,11 +84,15 @@ Use it as your transducer template for the following.
 ; < [0 1 2]
 ```
 
+[Link to the solution](solution/debug.clj)
+
 Strange patterns, it reminds me of ...
 
 **The PHP Hadouken !!!**
 
-![PHP Hadouken](php hadouken.jpg)
+<p align="center">
+  <img src="img/php_hadouken.jpg" alt="PHP Hadouken">
+</p>
 
 We are now ready to face real transducer implementations and confront an army of problems.
 
@@ -94,6 +106,8 @@ You heard me well, I want you to implement the following transducer.
 (into [] (beg 2) beg-data)
 ; => [:may :may :i :i :beg :beg :your :your :pardon :pardon :? :?]
 ```
+
+[Link to the partial solution](solution/beg-step1.clj)
 
 Make sure that you are handling the early termination as well.
 
@@ -149,9 +163,13 @@ Test with the debug transducer (expect problems and losing some hair).
 
 The `beg` transducer should not continue sending data downstream after it receives a reduced result. Fix your implementation if needed.
 
+[Link to the complete solution](solution/beg-step2.clj)
+
 ## All your data are belong to me
 
-![Catducer](img/coco transducer.jpg)
+<p align="center">
+  <img src="img/coco_transducer.jpg" alt="Catducer">
+</p>
 
 Implement the `my-cat` transducer. For each step, you will need to adapt your implementation to the new requirements described by the test samples.
 
@@ -165,6 +183,7 @@ It functions similarly to `clojure.core/cat`. Don't handle early termination at 
 (into [] my-cat cat-data)
 ; => [1 2 :fish 3 :heat 4 5 :sleep 6 7]
 ```
+[Link to the solution, part 1](solution/my-cat-step1.clj)
 
 * Step 2, hungry cat
 
@@ -175,6 +194,8 @@ As you can see, the transducer is keeping for itself all the fishes and the heat
 ; => [1 2 3 4 5 :sleep 6 7]
 ```
 
+[Link to the solution, part 2](solution/my-cat-step2.clj)
+
 * Step 3, sleepy cat
 
 That version of the transducer falls asleep an the `:sleep` keyword and do not process any subsequent data.
@@ -183,6 +204,8 @@ That version of the transducer falls asleep an the `:sleep` keyword and do not p
 (into [] my-cat cat-data)
 ; => [1 2 3 4 5]
 ```
+
+[Link to the solution, part 3](solution/my-cat-step3.clj)
 
 * Step 4, correct cat
 
@@ -218,8 +241,11 @@ At last, we want our transducer to respect the normal early termination (with `r
 ; < #reduced[{:status :ready, :val [1 2]} 0x517a7e8e]
 ```
 
+[Link to the complete solution](solution/my-cat-step4.clj)
+
 * Provide an idiomatic equivalent to `my-cat`.
 
+[Link to the idiomatic solution](solution/my-cat-step5.clj)
 
 ## A.D.D. transducer
 
@@ -270,6 +296,8 @@ Implement `serieduce` which provides a transducer which reduces incoming element
 
 ## Congratulations if you made it that far!
 
-![Success Kid](img/success kid.png)
+<p align="center">
+  <img src="img/success_kid.png" alt="Success Kid">
+</p>
 
 You are one of a few.
