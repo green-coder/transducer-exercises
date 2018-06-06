@@ -2,6 +2,8 @@
 
 Contains exercises on implementing custom transducers in Clojure.
 
+It is recommended (but not required) to read first [this serie of articles](https://dev.to/greencoder/build-your-own-transducer-and-impress-your-cat---part-1-mhp) first.
+
 The solutions are linked at the end of each section.
 
 ## Fair notice
